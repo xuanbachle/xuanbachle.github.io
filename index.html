@@ -155,9 +155,9 @@ td, th {
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
-  <a href="/index.html#blogs" onclick="return show('Blogs');" id="menus-Blogs" class="menus">Blogs</a>
-  <a href="/index.html#publications" onclick="return show('Publications');" id="menus-Publications" class="menus">Publications</a>
-  <a href="/index.html#home" class="active menus" onclick="return show('Home');" id="menus-Home">Home</a>
+  <a href="/index.html#Blogs" id="menus-Blogs" class="menus">Blogs</a>
+  <a href="/index.html#Publications" id="menus-Publications" class="menus">Publications</a>
+  <a href="/index.html#Home" class="active menus" id="menus-Home">Home</a>
 </div>
 
 <div class="content">
@@ -446,6 +446,13 @@ function show(shown) {
   return true;
 }
 
+window.onhashchange = function() {       
+    if (location.hash.length > 0) {        
+        var shown = location.hash.replace('#','');     
+	show(shown);
+    } 
+}
+	
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
