@@ -443,8 +443,7 @@ function show(shown) {
   var x = document.getElementById('menus-'+shown)
   x.className='active '+x.className
   document.getElementById("page-"+shown).style.display='block';
-  window.location.hash = shown;
-  return false;
+  return true;
 }
 
 $(document).ready(function(){
