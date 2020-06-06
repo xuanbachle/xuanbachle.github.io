@@ -525,7 +525,8 @@ và những người bạn tốt. À, rất nhớ những bữa ăn cơm chùa c
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-window.location.href = "https://xuanbachle.github.io/index.html#Home"
+if(window.location.href === "https://xuanbachle.github.io/index.html")
+	window.location.href = "https://xuanbachle.github.io/index.html#Home"
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
