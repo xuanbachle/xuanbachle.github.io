@@ -527,6 +527,12 @@ và những người bạn tốt. À, rất nhớ những bữa ăn cơm chùa c
 <script>
 if(window.location.href === "https://xuanbachle.github.io/index.html")
 	window.location.href = "https://xuanbachle.github.io/index.html#Home"
+
+if (location.hash.length > 0) {        
+        var shown = location.hash.replace('#','');     
+	show(shown);
+}
+	
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
