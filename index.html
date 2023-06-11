@@ -706,7 +706,7 @@ for (var i = 0; i < rows.length; i++) {
     if (matches) {
       for (var k = 0; k < matches.length; k++) {
         var extractedString = matches[k].substring(1, matches[k].length - 1); // Remove the square brackets
-        var splitStrings = extractedString.split(' and ');
+        var splitStrings = extractedString.split(''');
         var firstString = splitStrings[0].trim();
         
         if (count[firstString]) {
