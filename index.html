@@ -687,6 +687,41 @@ $(document).ready(function(){
     });
   });
 });
+	
+// Selector for the table body
+var tableBody = document.querySelector("#myTable");
+
+// Extract strings within square brackets, split them, and count occurrences
+var count = {};
+var rows = tableBody.getElementsByTagName("tr");
+for (var i = 0; i < rows.length; i++) {
+  var row = rows[i];
+  var columns = row.getElementsByTagName("td");
+  for (var j = 0; j < columns.length; j++) {
+    var column = columns[j];
+    var text = column.textContent || column.innerText; // Get the text content of the column
+    var regex = /\[(.*?)\]/g;
+    var matches = text.match(regex);
+    
+    if (matches) {
+      for (var k = 0; k < matches.length; k++) {
+        var extractedString = matches[k].substring(1, matches[k].length - 1); // Remove the square brackets
+        var splitStrings = extractedString.split(' and ');
+        var firstString = splitStrings[0].trim();
+        
+        if (count[firstString]) {
+          count[firstString]++;
+        } else {
+          count[firstString] = 1;
+        }
+      }
+    }
+  }
+}
+
+// Print the count of occurrences
+console.log(count);
+
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90026881-2"></script>
