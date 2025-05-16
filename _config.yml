@@ -25,11 +25,11 @@ author:
   avatar           : "profile.png"
   name             : "Bach Le"
   pronouns         : # example: "she/her"  
-  bio              : "Senior Lecturer"
+  bio              : "Senior Lecturer @ The University of Melbourne. Former Fellow of Australian Research Council DECRA Award (2022 - 2024)"
   location         : "VIC, Australia"
   employer         : "The University of Melbourne"
   uri              : # URL
-  email            : "check my publication" 
+  email            : "bach.le@unimelb.edu.au" 
 
   # Academic websites
   academia         : # URL
@@ -51,7 +51,7 @@ author:
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # "bsky.app" # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
