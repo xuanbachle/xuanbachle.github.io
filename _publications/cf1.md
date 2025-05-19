@@ -2,7 +2,7 @@
 title: "[ICPC'15] Active Semi-supervised Defect Categorization"
 collection: publications
 category: manuscripts
-permalink: ''
+permalink: '/publication/cf1'
 excerpt: ''
 date: 2015-05-01
 venue: '23rd International Conference on Program Comprehension, 2015, Research Track'
