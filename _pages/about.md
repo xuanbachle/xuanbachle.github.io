@@ -13,7 +13,7 @@ My research mission is to make automated software debugging a central part of So
 * Program Repair, Program Synthesis, Deductive Verification, Grammar-based Fuzzing, Multi-version Reasoning.
 * Human-centered and AI-powered Debugging, e.g., empirical and human study, graph mining, LLMs and its application in neuro-symbolic reasoning.
 
-Evidence of my research and supervision excellency includes:
+Evidence of my research and supervision excellence includes:
 * My students' awards: IEEE Distinguished Paper Award (2023), Google PhD Fellowship Award (2023), University Endeavor Award (2020, 2021), and Best Undergraduate Thesis Award (2022).
 * My research's award: Australian Research Council DECRA Award 2022 (worth approx. 500K) by the Australian government.
 
