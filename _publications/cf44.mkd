@@ -1,0 +1,13 @@
+---
+title: "[ICSME'26] Learning From the Best: What Makes Popular Hugging Face Models? A Registered Report"
+collection: publications
+category: manuscripts
+permalink: '/publication/cf44'
+excerpt: ''
+date: 2025-09-15
+venue: ' International Conference on Software Maintenance and Evolution (ICSME)'
+slidesurl: ''
+paperurl: ''
+bibtexurl: ''
+citation: 'Yinan Wu, Zhou Yang, Bowen Xu, Bo Wang, <u>Bach Le</u>, David Lo'
+---
