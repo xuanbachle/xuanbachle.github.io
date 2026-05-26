@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bach Le — University of Melbourne</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap"/>
+<style>
+  :root {
+    --bg: #f7f6f2; --bg2: #ffffff; --bg3: #eeede9;
+    --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.13);
+    --accent: #1a6ef5; --accent2: #0f8a6e;
+    --text: #1a1b1d; --muted: #6b6f78;
+    --serif: 'DM Serif Display', serif; --sans: 'Outfit', sans-serif; --mono: 'DM Mono', monospace;
+    --nav-bg: rgba(247,246,242,0.92); --shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .dark {
+    --bg: #0d0e0f; --bg2: #141516; --bg3: #1a1b1d;
+    --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+    --accent: #4a9eff; --accent2: #7dd4c0;
+    --text: #e8e9eb; --muted: #8a8d94;
+    --nav-bg: rgba(13,14,15,0.92); --shadow: none;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+
+  /* THEME TOGGLE */
+  .theme-toggle { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 40px; padding: 4px 6px 4px 10px; cursor: pointer; transition: all 0.2s; }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .toggle-label { font-size: 12px; color: var(--muted); font-family: var(--mono); user-select: none; }
+  .toggle-pill { width: 36px; height: 20px; border-radius: 10px; background: var(--bg2); border: 1px solid var(--border2); position: relative; transition: background 0.25s; }
+  .dark .toggle-pill { background: var(--accent); border-color: var(--accent); }
+  .toggle-knob { width: 14px; height: 14px; border-radius: 50%; background: var(--muted); position: absolute; top: 2px; left: 2px; transition: transform 0.25s, background 0.25s; }
+  .dark .toggle-knob { transform: translateX(16px); background: #fff; }
+
+  /* NAV */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; border-bottom: 1px solid var(--border); background: var(--nav-bg); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); }
+  .nav-brand { font-family: var(--serif); font-size: 18px; color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; cursor: pointer; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 80px 40px 60px; border-bottom: 1px solid var(--border); }
+  /* HEADSHOT */
+  .hero-photo-wrap { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 24px; }
+  .headshot-container { position: relative; flex-shrink: 0; }
+  .headshot {
+    width: 110px; height: 110px; border-radius: 16px;
+    object-fit: cover; display: block;
+    border: 2px solid var(--border2); box-shadow: var(--shadow);
+  }
+  .headshot-placeholder {
+    width: 110px; height: 110px; border-radius: 16px;
+    background: var(--bg3); border: 2px dashed var(--border2);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .headshot-placeholder:hover { border-color: var(--accent); background: var(--bg2); }
+  .headshot-placeholder input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .headshot-placeholder i { font-size: 22px; color: var(--muted); }
+  .headshot-placeholder span { font-size: 10px; color: var(--muted); font-family: var(--mono); text-align: center; line-height: 1.4; padding: 0 8px; }
+  .hero-name-block { display: flex; flex-direction: column; justify-content: center; }
+
+  .hero-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+  .hero-name { font-family: var(--serif); font-size: 52px; line-height: 1.1; margin-bottom: 8px; color: var(--text); }
+  .hero-name em { font-style: italic; color: var(--accent2); }
+  .hero-title { font-size: 16px; font-weight: 300; color: var(--muted); margin-bottom: 6px; }
+  .hero-dept { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .hero-bio { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 440px; margin-bottom: 32px; }
+  .dark .hero-bio { color: #c4c7ce; }
+  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--border2); border-radius: 40px; font-size: 13px; color: var(--muted); text-decoration: none; transition: all 0.2s; cursor: pointer; background: transparent; font-family: var(--sans); }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill-accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pill-accent:hover { opacity: 0.88; color: #fff; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; box-shadow: var(--shadow); transition: background 0.3s; }
+  .stat-num { font-family: var(--serif); font-size: 32px; color: var(--text); }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .interests { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); transition: background 0.3s; }
+  .interests-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 12px; padding: 4px 12px; background: rgba(26,110,245,0.08); border: 1px solid rgba(26,110,245,0.18); border-radius: 20px; color: var(--accent); }
+  .dark .tag { background: rgba(74,158,255,0.1); border-color: rgba(74,158,255,0.2); }
+  .tag.teal { background: rgba(15,138,110,0.08); border-color: rgba(15,138,110,0.18); color: var(--accent2); }
+  .dark .tag.teal { background: rgba(125,212,192,0.1); border-color: rgba(125,212,192,0.2); }
+
+  /* SECTIONS */
+  section { padding: 60px 40px; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-title { font-family: var(--serif); font-size: 28px; color: var(--text); }
+  .section-count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* NEWS / BOOKS */
+  .news-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 12px; overflow: hidden; }
+  .news-item { display: grid; grid-template-columns: 110px 1fr auto; gap: 20px; align-items: start; padding: 20px 24px; background: var(--bg2); transition: background 0.15s; }
+  .news-item:hover { background: var(--bg3); }
+  .news-date { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+  .news-text { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .news-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .nb-book { background: rgba(130,80,200,0.08); color: #7040c0; border: 1px solid rgba(130,80,200,0.18); }
+  .dark .nb-book { background: rgba(180,130,255,0.1); color: #b482ff; border-color: rgba(180,130,255,0.2); }
+
+  /* PUBLICATIONS */
+  .pub-filters { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .pub-filter { font-size: 12px; padding: 5px 14px; border: 1px solid var(--border2); border-radius: 20px; color: var(--muted); cursor: pointer; transition: all 0.15s; background: transparent; font-family: var(--sans); }
+  .pub-filter.active, .pub-filter:hover { border-color: var(--accent); color: var(--accent); background: rgba(26,110,245,0.07); }
+  .dark .pub-filter.active, .dark .pub-filter:hover { background: rgba(74,158,255,0.08); }
+  .pub-list { display: flex; flex-direction: column; gap: 16px; }
+  .pub-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: auto 1fr; gap: 0 20px; transition: border-color 0.2s, background 0.3s; box-shadow: var(--shadow); }
+  .pub-card[data-year]:not(.visible) { display: none; }
+  .pub-card:hover { border-color: var(--border2); }
+  .pub-year-col { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 3px; min-width: 40px; }
+  .pub-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; line-height: 1.45; color: var(--text); }
+  .pub-authors { font-size: 13px; color: var(--muted); margin-bottom: 10px; line-height: 1.55; }
+  .pub-authors u { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+  .pub-venue { font-size: 12px; color: var(--accent2); font-style: italic; margin-bottom: 12px; }
+  .pub-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .pub-link { font-family: var(--mono); font-size: 11px; padding: 3px 10px; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+  .pub-link:hover { border-color: var(--accent); color: var(--accent); }
+  .pub-cite { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: auto; }
+  .pub-badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+  .pb-award { background: rgba(180,120,0,0.1); color: #a07800; }
+  .dark .pb-award { background: rgba(239,180,39,0.12); color: #f0b429; }
+
+  /* TEAM */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .team-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: border-color 0.2s, background 0.3s; box-shadow: var(--shadow); }
+  .team-card:hover { border-color: var(--border2); }
+  .avatar { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 20px; }
+  .av-blue { background: rgba(26,110,245,0.1); color: var(--accent); }
+  .av-teal { background: rgba(15,138,110,0.1); color: var(--accent2); }
+  .av-purple { background: rgba(130,80,200,0.1); color: #7040c0; }
+  .dark .av-purple { background: rgba(180,130,255,0.15); color: #b482ff; }
+  .av-amber { background: rgba(180,120,0,0.1); color: #a07800; }
+  .dark .av-amber { background: rgba(239,180,39,0.12); color: #f0b429; }
+  .av-coral { background: rgba(200,80,50,0.1); color: #c0402a; }
+  .dark .av-coral { background: rgba(255,120,90,0.12); color: #ff785a; }
+  .av-green { background: rgba(40,160,80,0.1); color: #289050; }
+  .dark .av-green { background: rgba(80,220,120,0.12); color: #50dc78; }
+  .team-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
+  .team-role { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .team-topic { font-size: 11px; color: var(--accent); font-family: var(--mono); text-align: center; line-height: 1.4; }
+  .team-section-label { grid-column: 1/-1; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 0 0; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .contact-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: var(--shadow); transition: background 0.3s; }
+  .contact-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .contact-row { display: flex; align-items: start; gap: 12px; margin-bottom: 14px; font-size: 14px; color: var(--muted); }
+  .contact-row i { color: var(--accent); margin-top: 2px; }
+  .contact-row span { color: var(--text); }
+  .prospect-text { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
+
+  footer { padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  footer p { font-size: 12px; color: var(--muted); }
+
+  /* ── BURGER MENU ── */
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 9;
+    background: var(--nav-bg); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 16px 20px 20px;
+    flex-direction: column; gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 15px; color: var(--muted); text-decoration: none;
+    letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 4px;
+    border-bottom: 1px solid var(--border); transition: color 0.2s; cursor: pointer;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--text); }
+
+  /* ── TABLET (≤900px) ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 48px 32px 48px; gap: 36px; }
+    .hero-name { font-size: 44px; }
+    .hero-bio { max-width: 100%; }
+    .contact-grid { grid-template-columns: 1fr; }
+    section { padding: 48px 32px; }
+    footer { padding: 28px 32px; }
+  }
+
+  /* ── MOBILE (≤600px) ── */
+  @media (max-width: 600px) {
+    nav { padding: 14px 16px; }
+    .nav-links { display: none; }
+    .burger { display: flex; }
+
+    .hero { padding: 32px 16px 40px; gap: 28px; }
+    .hero-name { font-size: 36px; }
+    .hero-photo-wrap { gap: 16px; }
+    .headshot, .headshot-placeholder { width: 80px; height: 80px; border-radius: 12px; }
+    .hero-tag { font-size: 10px; }
+    .hero-title { font-size: 14px; }
+    .hero-links { gap: 8px; }
+    .pill { font-size: 12px; padding: 7px 13px; }
+
+    .stat-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat-num { font-size: 24px; }
+    .stat-card { padding: 14px 10px; }
+
+    section { padding: 32px 16px; }
+    .section-title { font-size: 24px; }
+
+    .news-item { grid-template-columns: 1fr auto; gap: 8px 12px; }
+    .news-date { grid-column: 1; grid-row: 1; }
+    .news-text { grid-column: 1; grid-row: 2; }
+    .news-badge { grid-column: 2; grid-row: 1; align-self: start; }
+
+    .pub-filters { gap: 6px; }
+    .pub-filter { font-size: 11px; padding: 4px 10px; }
+    .pub-card { grid-template-columns: 1fr; gap: 4px; }
+    .pub-year-col { font-size: 11px; }
+    .pub-title { font-size: 14px; }
+    .pub-authors { font-size: 12px; }
+    .pub-venue { font-size: 11px; }
+    .pub-meta { gap: 8px; }
+    .pub-cite { margin-left: 0; }
+
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .team-card { padding: 18px 12px; }
+    .avatar { width: 48px; height: 48px; font-size: 16px; margin-bottom: 10px; }
+    .team-name { font-size: 13px; }
+    .team-role { font-size: 11px; }
+    .team-topic { font-size: 10px; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-card { padding: 20px; }
+
+    footer { padding: 20px 16px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+
+  /* ── EDUCATION & APPOINTMENTS ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-group { margin-bottom: 36px; }
+  .tl-group-label {
+    font-size: 11px; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.08em; font-family: var(--mono);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 0 24px; padding: 16px 0; border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-period {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    padding-top: 3px; line-height: 1.5;
+  }
+  .tl-body {}
+  .tl-role { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; line-height: 1.4; }
+  .tl-org { font-size: 13px; color: var(--accent); margin-bottom: 5px; }
+  .tl-detail { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .tl-badge {
+    display: inline-flex; font-size: 11px; padding: 2px 9px; border-radius: 20px;
+    margin-top: 6px; font-family: var(--mono);
+  }
+  .tl-badge-award { background: rgba(239,180,39,0.12); color: #a07800; border: 1px solid rgba(180,120,0,0.2); }
+  .dark .tl-badge-award { color: #f0b429; border-color: rgba(239,180,39,0.25); }
+  .tl-badge-prize { background: rgba(74,158,255,0.08); color: var(--accent); border: 1px solid rgba(26,110,245,0.18); }
+  @media (max-width: 600px) {
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
+    .tl-period { font-size: 10px; }
+  }
+</style>
+</head>
+<body id="thebody">
+
+<nav>
+  <span class="nav-brand">Bach Le</span>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a onclick="smoothTo('education')">Education</a>
+      <a onclick="smoothTo('books')">Books</a>
+      <a onclick="smoothTo('pubs')">Publications</a>
+      <a onclick="smoothTo('team')">Team</a>
+      <a onclick="smoothTo('contact')">Contact</a>
+    </div>
+    <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+      <span class="toggle-label" id="toggle-label">Light</span>
+      <div class="toggle-pill"><div class="toggle-knob"></div></div>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="smoothTo('education')">Education</a>
+  <a onclick="smoothTo('books')">Books</a>
+  <a onclick="smoothTo('pubs')">Publications</a>
+  <a onclick="smoothTo('team')">Team</a>
+  <a onclick="smoothTo('contact')">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">// Software Engineering & Programming Language</div>
+    <div class="hero-photo-wrap">
+      <div class="headshot-container" id="headshot-container">
+        <div class="headshot-placeholder" id="headshot-placeholder" title="Click to upload your photo">
+          <input type="file" accept="image/*" onchange="loadHeadshot(event)" />
+          <i class="ti ti-user-circle"></i>
+          <span>Click to upload headshot</span>
+        </div>
+      </div>
+      <div class="hero-name-block">
+        <h1 class="hero-name">Bach<br><em>Le</em></h1>
+        <p class="hero-title">Senior Lecturer / Associate Professor</p>
+        <p class="hero-dept">SEAPL Lab — School of Computing and Information Systems</p>
+      </div>
+    </div>
+    <p class="hero-bio">I lead the SEAPL (Software Engineering And Programming Languages) lab. My research focuses on automated program repair, formal verification, and AI-assisted software engineering — building tools that make software more correct, secure, and reliable.</p>
+    <div class="hero-links">
+      <button class="pill pill-accent"><i class="ti ti-mail"></i> Email</button>
+      <a class="pill" href="https://scholar.google.com.sg/citations?user=AUJWzE8AAAAJ&hl=en" target="_blank" rel="noopener"><i class="ti ti-brand-google-scholar"></i> Scholar</a>
+      <a class="pill" href="https://github.com/xuanbachle/" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i> GitHub</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">Publications</div></div>
+      <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Current Members</div></div>
+      <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Years Research</div></div>
+    </div>
+    <div class="interests">
+      <div class="interests-label">Research Interests</div>
+      <div class="tags">
+        <span class="tag">Automated Program Repair</span>
+        <span class="tag teal">Formal Verification</span>
+        <span class="tag">LLMs for Code</span>
+        <span class="tag teal">Software Testing</span>
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Secure Code Generation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKS -->
+<section id="education">
+  <div class="section-header">
+    <h2 class="section-title">Education &amp; Appointments</h2>
+  </div>
+  <div class="timeline">
+
+    <!-- Academic Appointments -->
+    <div class="tl-group">
+      <div class="tl-group-label">Academic Appointments</div>
+
+      <div class="tl-item">
+        <div class="tl-period">Sept 2024 –<br>Present</div>
+        <div class="tl-body">
+          <div class="tl-role">Senior Lecturer <span style="font-size:12px;color:var(--muted)">(equiv. US Associate Professor)</span></div>
+          <div class="tl-org">The University of Melbourne, Australia</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">Jan 2022 –<br>Dec 2024</div>
+        <div class="tl-body">
+          <div class="tl-role">ARC DECRA Fellow</div>
+          <div class="tl-org">Australian Research Council Discovery Early Career Researcher Award</div>
+          <span class="tl-badge tl-badge-award">Fellowship</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">July 2019 –<br>Aug 2024</div>
+        <div class="tl-body">
+          <div class="tl-role">Lecturer <span style="font-size:12px;color:var(--muted)">(equiv. US Assistant Professor)</span></div>
+          <div class="tl-org">The University of Melbourne, Australia</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">June 2018 –<br>June 2019</div>
+        <div class="tl-body">
+          <div class="tl-role">Postdoctoral Researcher</div>
+          <div class="tl-org">Carnegie Mellon University, Silicon Valley, USA</div>
+          <div class="tl-detail">Topic: Software Security · Supported by DARPA STAC program, ISSTAC project<br>Advisor: ACM Distinguished Scientist &amp; Assoc. Prof. Corina Pasareanu</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Research Internships -->
+    <div class="tl-group">
+      <div class="tl-group-label">Research Positions</div>
+
+      <div class="tl-item">
+        <div class="tl-period">Aug 2012 –<br>Nov 2013</div>
+        <div class="tl-body">
+          <div class="tl-role">Research Assistant</div>
+          <div class="tl-org">National University of Singapore, Singapore</div>
+          <div class="tl-detail">Topic: Static software verification using SAT and Separation Logic<br>Advisor: Assoc. Prof. Wei Ngan Chin</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">Feb 2012 –<br>May 2012</div>
+        <div class="tl-body">
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">National University of Singapore, Singapore</div>
+          <div class="tl-detail">Topic: Static software verification using SAT and Separation Logic<br>Advisor: Assoc. Prof. Wei Ngan Chin</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">Aug 2012</div>
+        <div class="tl-body">
+          <div class="tl-role">Undergraduate Intern</div>
+          <div class="tl-org">Nagoya University, Japan</div>
+          <div class="tl-detail">Topic: Building a social network application<br>Host: Prof. Toyohide Watanabe</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Education -->
+    <div class="tl-group">
+      <div class="tl-group-label">Education</div>
+
+      <div class="tl-item">
+        <div class="tl-period">Jan 2014 –<br>May 2018</div>
+        <div class="tl-body">
+          <div class="tl-role">PhD in Computer Science</div>
+          <div class="tl-org">Singapore Management University, Singapore</div>
+          <div class="tl-detail">Topic: Automatic Software Repair<br>Supported by LARC–Carnegie Mellon University collaboration program<br>Advisor: Prof. David Lo</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">Aug 2015 –<br>June 2016</div>
+        <div class="tl-body">
+          <div class="tl-role">PhD Residency Training</div>
+          <div class="tl-org">Carnegie Mellon University, Pittsburgh, USA</div>
+          <div class="tl-detail">Topic: Automatic Software Repair · Under LARC–CMU collaboration program, supported by Singapore Ministry of Education<br>Host: Assoc. Prof. Claire Le Goues</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">Aug 2007 –<br>May 2012</div>
+        <div class="tl-body">
+          <div class="tl-role">BSc (Hons)</div>
+          <div class="tl-org">Hanoi University of Science and Technology, Vietnam</div>
+          <div class="tl-detail">Topic: SAT solvers and their application in software verification<br>Advisors: Assoc. Prof. Huynh Quyet Thang &amp; Assoc. Prof. Wei Ngan Chin</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-period">May 2005 –<br>May 2007</div>
+        <div class="tl-body">
+          <div class="tl-role">High School — Mathematics-Specialized Class</div>
+          <div class="tl-org">Phan Boi Chau High School for Gifted Students, Nghe An, Vietnam</div>
+          <div class="tl-detail">
+            <span class="tl-badge tl-badge-prize">🏆 First Prize &amp; Thủ Khoa — Mathematical Olympiads, Nghe An, 2005</span><br>
+            <span class="tl-badge tl-badge-prize" style="margin-top:4px">🏆 First Prize &amp; Thủ Khoa — Mathematical Olympiads, Nghe An, 2000</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="books">
+  <div class="section-header">
+    <h2 class="section-title">Books</h2>
+    <span class="section-count">// Book chapters</span>
+  </div>
+  <div class="news-grid">
+    <div class="news-item">
+      <span class="news-date">2023</span>
+      <span class="news-text">
+        <strong>Recent Advances in Symbolic Pathfinder</strong> — Book chapter in <em>Automatic Software Verification</em>. Covers JFix and S3 program repair frameworks built atop Symbolic Pathfinder, scaling to programs of 300K+ lines of code.<br>
+        <span style="font-size:12px;color:var(--muted)">Pasareanu, Noller, Fromherz, <strong>Bach D.X. Le</strong>, Visser, Bultan, Eiers</span><br>
+        <span style="display:inline-flex;gap:8px;margin-top:8px">
+          <a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a>
+        </span>
+      </span>
+      <span class="news-badge nb-book">Book Chapter</span>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="pubs">
+  <div class="section-header">
+    <h2 class="section-title">Publications</h2>
+    <span class="section-count">// Journals &amp; Conferences</span>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6">
+    <u style="text-underline-offset:3px">Underlined names</u> are students/postdocs under my supervision.
+    You can also find my articles on my <a href="https://scholar.google.com.sg/citations?user=AUJWzE8AAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">Google Scholar profile</a>.
+  </p>
+  <div class="pub-filters">
+    <button class="pub-filter active" data-filter="all">All</button>
+    <button class="pub-filter" data-filter="2026">2026</button>
+    <button class="pub-filter" data-filter="2025">2025</button>
+    <button class="pub-filter" data-filter="2024">2024</button>
+    <button class="pub-filter" data-filter="2023">2023</button>
+    <button class="pub-filter" data-filter="2022">2022</button>
+    <button class="pub-filter" data-filter="older">2021 &amp; Earlier</button>
+  </div>
+  <div class="pub-list" id="pub-list">
+
+    <!-- 2026 -->
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">CodeWiki: Evaluating AI's Ability to Generate Holistic Documentation for Large-Scale Codebases</div>
+        <div class="pub-authors"><u>Hoang-Anh Nguyen</u>, <u>Minh Le-Anh</u>, <strong>Bach Le</strong>, and Nghi Bui</div>
+        <div class="pub-venue">64th Annual Meeting of the Association for Computational Linguistics (ACL), Findings Track, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Just-in-Time Bug Classifier: A Step Towards Integrating Automated Program Repair in CI/CD Pipelines</div>
+        <div class="pub-authors"><u>Vinay Kabady</u>, <strong>Bach Le</strong>, Patanamon Thongtanunam, Christoph Treude</div>
+        <div class="pub-venue">Information and Software Technology (IST), Journal, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Large Language Models for Computer-Aided Design: A Survey</div>
+        <div class="pub-authors"><u>Licheng Zhang</u>, <strong>Bach Le</strong>, Naveed Akhtar, Siew-Kei Lam, Tuan Ngo</div>
+        <div class="pub-venue">ACM Computing Surveys (CSUR), Journal, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Do Not Treat Code as Natural Language: Implications for Repository-Level Code Generation and Beyond</div>
+        <div class="pub-authors"><u>Minh Le-Anh</u>, Huyen Nguyen, Khanh An Tran, Nam Le Hai, Linh Ngo Van, Nghi Bui, and <strong>Bach Le</strong></div>
+        <div class="pub-venue">ACM International Conference on the Foundations of Software Engineering (FSE), 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Memory-Efficient Large Language Models for Program Repair with Semantic-Guided Patch Generation</div>
+        <div class="pub-authors"><u>Cong-Thanh Le</u>, <strong>Bach Le</strong>, and Toby Murray</div>
+        <div class="pub-venue">48th IEEE/ACM International Conference on Software Engineering (ICSE), 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Unlocking LLM Repair Capabilities Through Cross-Language Translation and Multi-Agent Refinement</div>
+        <div class="pub-authors">Wenqiang Luo, Jacky Wai Keung, Boyang Yang, Jacques Klein, Tegawende F. Bissyande, <u>Haoye Tian</u>, and <strong>Bach Le</strong></div>
+        <div class="pub-venue">48th IEEE/ACM International Conference on Software Engineering (ICSE), 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">Learning From the Best: What Makes Popular Hugging Face Models? A Registered Report</div>
+        <div class="pub-authors">Yinan Wu, Zhou Yang, Bowen Xu, Bo Wang, <strong>Bach Le</strong>, David Lo</div>
+        <div class="pub-venue">International Conference on Software Maintenance and Evolution (ICSME), 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">Can LLMs Reason About Program Semantics? A Comprehensive Evaluation of LLMs on Formal Specification Inference</div>
+        <div class="pub-authors"><u>Cong-Thanh Le</u>, <strong>Bach Le</strong>, Toby Murray</div>
+        <div class="pub-venue">63rd Annual Meeting of the Association for Computational Linguistics (ACL), Main Research Track, 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">Towards Mining Robust Coq Proof Patterns (Extended Abstract/Vision)</div>
+        <div class="pub-authors">Cezary Kaliszyk, <strong>Bach Le</strong>, Christine Rizkallah</div>
+        <div class="pub-venue">The 11th International Workshop on Coq for Programming Languages (CoqPL), collocated with POPL, 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">When Fine-Tuning LLMs Meets Data Privacy: An Empirical Study of Federated Learning in LLM-Based Program Repair</div>
+        <div class="pub-authors">Wenqiang Luo, Jacky Wai Keung, Bo Yang, He Ye, Claire Le Goues, Tegawende F Bissyande, <u>Haoye Tian</u>, <strong>Bach Le</strong></div>
+        <div class="pub-venue">ACM Transactions on Software Engineering and Methodology (TOSEM), Journal, 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">Towards Reliable Evaluation of Neural Program Repair with Natural Robustness Testing</div>
+        <div class="pub-authors"><u>Cong-Thanh Le</u>, <u>Thanh-Dat Nguyen</u>, <strong>Bach Le</strong>, Toby Murray</div>
+        <div class="pub-venue">ACM Transactions on Software Engineering and Methodology (TOSEM), Journal, 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">Adversarial Patch Generation for Automated Program Repair</div>
+        <div class="pub-authors">Aziz Alhefdhi, Khanh-Hoa Dam, <u>Cong-Thanh Le</u>, <strong>Bach Le</strong>, Aditya Ghose</div>
+        <div class="pub-venue">Software Quality Journal (SQJ), 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2025">
+      <div class="pub-year-col">2025</div>
+      <div>
+        <div class="pub-title">EnseSmells: Deep ensemble and programming language models for automated code smells detection</div>
+        <div class="pub-authors"><u>Anh Ho</u>, Phuong T. Nguyen, Mai Anh T. Bui, Amleto Di Salle, <strong>Bach Le</strong></div>
+        <div class="pub-venue">Journal of Systems and Software (JSS), 2025</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="pub-card visible" data-year="2024">
+      <div class="pub-year-col">2024</div>
+      <div>
+        <div class="pub-title">VRDSynth: Synthesizing Programs for Multilingual Visually Rich Document Information Extraction</div>
+        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, Tung Do-Viet, Hung Nguyen-Duy, Tuan-Hai Luu, Hung Le, <strong>Bach Le</strong>, Patanamon Thongtanunam</div>
+        <div class="pub-venue">ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2024</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2024">
+      <div class="pub-year-col">2024</div>
+      <div>
+        <div class="pub-title">LEGION: Harnessing Pre-trained Language Models for GitHub Topic Recommendations with Distribution-Balance Loss</div>
+        <div class="pub-authors">Yen-Trang Dang, <u>Cong-Thanh Le</u>, Phuc-Thanh Nguyen, Mai-Anh Bui, Phuong T. Nguyen, <strong>Bach Le</strong>, Quyet-Thang Huynh</div>
+        <div class="pub-venue">28th International Conference on Evaluation and Assessment in Software Engineering (EASE), 2024</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2024">
+      <div class="pub-year-col">2024</div>
+      <div>
+        <div class="pub-title">Does Going Beyond Branch Coverage Make Program Repair Tools More Reliable?</div>
+        <div class="pub-authors">Amirfarhad Nilizadeh, Gary T. Leavens, Corina Pasareanu, <strong>Xuan-Bach D. Le</strong>, David Cok</div>
+        <div class="pub-venue">IEEE International Conference on Software Testing, Verification and Validation (ICST), Research Track, 2024</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2024">
+      <div class="pub-year-col">2024</div>
+      <div>
+        <div class="pub-title">Refining ChatGPT-Generated Code: Characterizing and Mitigating Code Quality Issues</div>
+        <div class="pub-authors">Yue Liu, <u>Cong-Thanh Le</u>, Ratnadira Widyasari, Chakkrit Tantithamthavorn, Li Li, <strong>Xuan Bach D. Le</strong>, David Lo</div>
+        <div class="pub-venue">ACM Transactions on Software Engineering and Methodology (TOSEM), Journal, 2024</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2024">
+      <div class="pub-year-col">2024</div>
+      <div>
+        <div class="pub-title">Leveraging Large Language Model for Automatic Patch Correctness Assessment</div>
+        <div class="pub-authors">Xin Zhou, Bowen Xu, Kisub Kim, DongGyun Han, Hung Nguyen, Thanh Le-Cong, Junda He, <strong>Bach Le</strong>, and David Lo</div>
+        <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2024</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">Are We Ready to Embrace Generative AI for Software Q&amp;A?</div>
+        <div class="pub-authors">Bowen Xu, <u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, Thong Hoang, Jiakun Liu, Kisub Kim, Chen Gong, Changan Niu, Chenyu Wang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-venue">38th IEEE/ACM International Conference on Automated Software Engineering (ASE), New Ideas Track, 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">Multi-Granularity Detector for Vulnerability Fixes</div>
+        <div class="pub-authors">Truong Giang Nguyen, Thanh Le-Cong, Hong Jin Kang, Ratnadira Widyasari, Chengran Yang, Zhipeng Zhao, Bowen Xu, Jiayuan Zhou, Xin Xia, Ahmed Hassan, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning</div>
+        <div class="pub-authors">Thanh Le-Cong, Duc-Minh Luong, <strong>Xuan-Bach D. Le</strong>, David Lo, Nhat-Hoa Tran, Quang-Huy Bui, Quyet-Thang Huynh</div>
+        <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">An Efficient Cyclic Entailment Procedure in a Fragment of Separation Logic</div>
+        <div class="pub-authors">Quang-Loc Le, <strong>Xuan-Bach D. Le</strong></div>
+        <div class="pub-venue">26th International Conference on Foundations of Software Science and Computation Structures (FoSSaCS), Research Track, 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">The Future Can't Help Fix The Past: Assessing Program Repair In The Wild</div>
+        <div class="pub-authors"><u>Vinay Kabadi</u>, Dezhen Kong, Siyu Xie, G. Arthar, Lingfeng Bao, Tien-Duy BL, <strong>Xuan-Bach D. Le</strong>, and David Lo</div>
+        <div class="pub-venue">39th IEEE International Conference on Software Maintenance and Evolution (ICSME), 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a>
+          <span class="pub-badge pb-award">🏆 Distinguished Paper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2023">
+      <div class="pub-year-col">2023</div>
+      <div>
+        <div class="pub-title">Chronos: Time-Aware Zero-Shot Identification of Libraries from Vulnerability Reports</div>
+        <div class="pub-authors">Y. Lyu, Thanh Le-Cong, Hong Jin Kang, R. Widyasari, Z. Zhao, <strong>Xuan-Bach D. Le</strong>, Ming Li, David Lo</div>
+        <div class="pub-venue">45th IEEE/ACM International Conference on Software Engineering (ICSE), Research Track, 2023</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="pub-card visible" data-year="2022">
+      <div class="pub-year-col">2022</div>
+      <div>
+        <div class="pub-title">AutoPruner: Transformer-based Call Graph Pruning</div>
+        <div class="pub-authors">Thanh Le-Cong, Hong Jin Kang, Truong Giang Nguyen, S. Haryono, David Lo, <strong>Xuan-Bach D. Le</strong>, and Quyet-Thang Huynh</div>
+        <div class="pub-venue">21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), Research Track, 2022</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2022">
+      <div class="pub-year-col">2022</div>
+      <div>
+        <div class="pub-title">VulCurator: A Vulnerability-Fixing Commit Detector</div>
+        <div class="pub-authors">Truong Giang Nguyen, Thanh Le-Cong, Hong Jin Kang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-venue">21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), Demo Track, 2022</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2022">
+      <div class="pub-year-col">2022</div>
+      <div>
+        <div class="pub-title">FFL: Fine grained Fault Localization for Student Programs via Syntactic and Semantic Reasoning</div>
+        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, Duc-Minh Luong, Van-Hai Duong, <strong>Xuan-Bach D. Le</strong>, David Lo and Quyet-Thang Huynh</div>
+        <div class="pub-venue">38th IEEE International Conference on Software Maintenance and Evolution (ICSME), Research Track, 2022</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2022">
+      <div class="pub-year-col">2022</div>
+      <div>
+        <div class="pub-title">Test Mimicry to Assess the Exploitability of Library Vulnerabilities</div>
+        <div class="pub-authors">Hong Jin Kang, Truong Giang Nguyen, <strong>Xuan-Bach D. Le</strong>, David Lo, Corina Pasareanu</div>
+        <div class="pub-venue">31st ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), Research Track, 2022</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2022">
+      <div class="pub-year-col">2022</div>
+      <div>
+        <div class="pub-title">Toward the Analysis of Graph Neural Networks</div>
+        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, ThanhVu H Nguyen, <strong>Xuan-Bach D. Le</strong>, Quyet-Thang Huynh</div>
+        <div class="pub-venue">44th IEEE/ACM International Conference on Software Engineering (ICSE), NIER Track, 2022</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <!-- 2021 & Earlier -->
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2021</div>
+      <div>
+        <div class="pub-title">REFIXAR: Multi-version Reasoning for Automated Repair of Regression Errors</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, Quang-Loc Le</div>
+        <div class="pub-venue">32nd IEEE International Symposium on Software Reliability Engineering (ISSRE), Research Track, 2021</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2021</div>
+      <div>
+        <div class="pub-title">More Reliable Test Suites for Dynamic Program Repair by Using Counterexamples</div>
+        <div class="pub-authors">Amirfarhad Nilizadeh, Marlon Calvo, Gary T. Leavens, and <strong>Xuan-Bach D. Le</strong></div>
+        <div class="pub-venue">32nd IEEE International Symposium on Software Reliability Engineering (ISSRE), Research Track, 2021</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2021</div>
+      <div>
+        <div class="pub-title">Usability and Aesthetics: Better Together for Automated Repair of Web Pages</div>
+        <div class="pub-authors"><u>Cong-Thanh Le</u>, <strong>Xuan-Bach D. Le</strong>, Quyet-Thang Huynh, Phi Le Nguyen</div>
+        <div class="pub-venue">32nd IEEE International Symposium on Software Reliability Engineering (ISSRE), Research Track, 2021</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2021</div>
+      <div>
+        <div class="pub-title">Exploring True Test Overfitting in Dynamic Automated Program Repair using Formal Methods</div>
+        <div class="pub-authors">Amirfarhad Nilizadeh, Gary T. Leavens, <strong>Xuan-Bach D. Le</strong>, Corina Pasareanu, and David R. Cok</div>
+        <div class="pub-venue">IEEE International Conference on Software Testing, Verification and Validation (ICST), Research Track, 2021</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2019</div>
+      <div>
+        <div class="pub-title">SAFFRON: Adaptive Grammar-based Fuzzing for Worst-Case Analysis</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, Corina Pasareanu, Rohan Padhye, David Lo, Willem Visser, and Koushik Sen</div>
+        <div class="pub-venue">Java Pathfinder Workshop (JPF), collocated with ASE, 2019</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2019</div>
+      <div>
+        <div class="pub-title">On Reliability of Patch Correctness Assessment</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, Lingfeng Bao, David Lo, Xia Xin, Shanping Li, and Corina Pasareanu</div>
+        <div class="pub-venue">41st ACM/IEEE International Conference on Software Engineering (ICSE), Research Track, 2019</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2019</div>
+      <div>
+        <div class="pub-title">Symbolic Pathfinder for SV-COMP</div>
+        <div class="pub-authors">Yannic Noller, Corina Pasareanu, Aymeric Fromherz, <strong>Xuan-Bach D. Le</strong>, and Willem Visser</div>
+        <div class="pub-venue">Competition on Software Verification (SV-COMP), held at TACAS, 2019</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2019</div>
+      <div>
+        <div class="pub-title">Smart Contract Development: Challenges and Opportunities</div>
+        <div class="pub-authors">Z. Weiqin, L. David, S. K. Pavneet, <strong>Xuan-Bach D. Le</strong>, F. Yang, Zhenyu Chen, and Baowen Xu</div>
+        <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2019</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2018</div>
+      <div>
+        <div class="pub-title">Overfitting in Semantics-Based Automated Program Repair</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, Ferdian Thung, David Lo, Claire Le Goues</div>
+        <div class="pub-venue">Empirical Software Engineering Journal (EmSE), Invited, Journal First Track at ICSE, 2018</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2017</div>
+      <div>
+        <div class="pub-title">S3: Syntax- and Semantic-Guided Repair Synthesis via Programming by Examples</div>
+        <div class="pub-authors"><strong>Xuan Bach D. Le</strong>, Duc Hiep Chu, David Lo, Claire Le Goues, and Willem Visser</div>
+        <div class="pub-venue">11th Joint Meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE), Research Track, 2017</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2017</div>
+      <div>
+        <div class="pub-title">JFIX: Semantics-Based Repair of Java Programs via Symbolic PathFinder</div>
+        <div class="pub-authors"><strong>Xuan Bach D. Le</strong>, Duc Hiep Chu, David Lo, Claire Le Goues, and Willem Visser</div>
+        <div class="pub-venue">26th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), Demonstrations Track, 2017</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2017</div>
+      <div>
+        <div class="pub-title">XSearch: A Domain-Specific Cross-Language Relevant Question Retrieval Tool</div>
+        <div class="pub-authors">Bowen Xu, Zhenchang Xing, Xin Xia, David Lo and <strong>Xuan-Bach D. Le</strong></div>
+        <div class="pub-venue">11th Joint Meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE), Demonstrations Track, 2017</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2016</div>
+      <div>
+        <div class="pub-title">History Driven Program Repair</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, David Lo, Claire Le Goues</div>
+        <div class="pub-venue">23rd IEEE International Conference on Software Analysis, Evolution, and Reengineering (SANER), Research Track, 2016</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2016</div>
+      <div>
+        <div class="pub-title">Enhancing Automated Program Repair with Deductive Verification</div>
+        <div class="pub-authors"><strong>Xuan Bach D. Le</strong>, Quang Loc Le, David Lo, Claire Le Goues</div>
+        <div class="pub-venue">32nd IEEE International Conference on Software Maintenance and Evolution (ICSME), ERA Track, 2016</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2016</div>
+      <div>
+        <div class="pub-title">Empirical Study on Synthesis Engines for Semantics-based Program Repair</div>
+        <div class="pub-authors"><strong>Xuan Bach D. Le</strong>, David Lo, Claire Le Goues</div>
+        <div class="pub-venue">32nd IEEE International Conference on Software Maintenance and Evolution (ICSME), ERA Track, 2016</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2016</div>
+      <div>
+        <div class="pub-title">Recommending Code Changes for Automatic Backporting of Linux Device Drivers</div>
+        <div class="pub-authors">Ferdian Thung, <strong>Xuan-Bach D. Le</strong>, David Lo, Julia L. Lawall</div>
+        <div class="pub-venue">32nd IEEE International Conference on Software Maintenance and Evolution (ICSME), Research Track, 2016</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2015</div>
+      <div>
+        <div class="pub-title">Should Fixing These Failures be Delegated to Automated Program Repair?</div>
+        <div class="pub-authors"><strong>Xuan-Bach D. Le</strong>, Tien-Duy B. Le, David Lo</div>
+        <div class="pub-venue">26th IEEE International Symposium on Software Reliability Engineering (ISSRE), Research Track, 2015</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2015</div>
+      <div>
+        <div class="pub-title">Synergizing Specification Miners through Model Fissions and Fusions</div>
+        <div class="pub-authors">Tien-Duy B. Le, <strong>Xuan-Bach D. Le</strong>, David Lo, and Ivan Beschastnikh</div>
+        <div class="pub-venue">30th IEEE/ACM International Conference on Automated Software Engineering (ASE), Research Track, 2015</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="older">
+      <div class="pub-year-col">2015</div>
+      <div>
+        <div class="pub-title">Active Semi-supervised Defect Categorization</div>
+        <div class="pub-authors">Ferdian Thung, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-venue">23rd IEEE International Conference on Program Comprehension (ICPC), Research Track, 2015</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-header">
+    <h2 class="section-title">Team</h2>
+    <span class="section-count">// <span style="font-family:var(--mono);font-size:12px;color:var(--muted)">SEAPL</span>ers — (<u>S</u>oftware <u>E</u>ngineering <u>A</u>nd <u>P</u>rogramming <u>L</u>anguage)</span>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-section-label">Current PhD Students</div>
+
+
+    <div class="team-card">
+      <div class="avatar av-purple">VK</div>
+      <div class="team-name">Vinay Kabady</div>
+      <div class="team-role">PhD Student (part-time) · 2020–2026</div>
+      <div class="team-topic">Automated Program Repair</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-teal">AH</div>
+      <div class="team-name">Anh Ho</div>
+      <div class="team-role">PhD Student · 2024–now</div>
+      <div class="team-topic">Automated Program Repair</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-amber">LZ</div>
+      <div class="team-name">Licheng Zhang</div>
+      <div class="team-role">PhD Student · 2025–now</div>
+      <div class="team-topic">Computer Vision for SE & Design</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-coral">HH</div>
+      <div class="team-name">Hieu Huynh</div>
+      <div class="team-role">PhD Student · 2024–now</div>
+      <div class="team-topic">Agentic AI</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-green">DN</div>
+      <div class="team-name">Dung Nguyen</div>
+      <div class="team-role">PhD Student · 2025–now</div>
+      <div class="team-topic">Secure Code Generation</div>
+    </div>
+
+    <div class="team-section-label">Research Assistants &amp; AI Residents</div>
+
+    <div class="team-card">
+      <div class="avatar av-blue">PZ</div>
+      <div class="team-name">Pengtao Zhao</div>
+      <div class="team-role">Research Assistant · 2025–now</div>
+      <div class="team-topic">Automated Program Repair</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-teal">HN</div>
+      <div class="team-name">Hoang-Anh Nguyen</div>
+      <div class="team-role">AI Resident @ FPT Software · 2025–now</div>
+      <div class="team-topic">AI for Software Engineering</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-purple">MN</div>
+      <div class="team-name">Minh Le-Anh</div>
+      <div class="team-role">AI Resident @ FPT Software · 2025–now</div>
+      <div class="team-topic">AI for Software Engineering</div>
+    </div>
+
+    <div class="team-section-label">Alumni</div>
+
+    <div class="team-card" style="opacity:0.65">
+      <div class="avatar av-blue">CL</div>
+      <div class="team-name">Cong-Thanh Le</div>
+      <div class="team-role">PhD 2023–2026</div>
+      <div class="team-topic">Trustworthy APR → Asst. Professor, SUTD, Singapore</div>
+    </div>
+    <div class="team-card" style="opacity:0.65">
+      <div class="avatar av-amber">DN2</div>
+      <div class="team-name">Dat Nguyen</div>
+      <div class="team-role">PhD 2022–2025</div>
+      <div class="team-topic">Neuro-symbolic reasoning &amp; neural network analysis → Postdoc, Harvard University</div>
+    </div>
+    <div class="team-card" style="opacity:0.65">
+      <div class="avatar av-coral">HT</div>
+      <div class="team-name">Haoye Tian</div>
+      <div class="team-role">Postdoc 2024–2025</div>
+      <div class="team-topic">Automated Program Repair → Asst. Professor, Aalto University, Finland</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-label">Get in touch</div>
+      <div class="contact-row"><i class="ti ti-mail"></i><div><span>bach.le@unimelb.edu.au</span><br><span style="font-size:12px">Best for research inquiries</span></div></div>
+      <div class="contact-row"><i class="ti ti-building"></i><span>School of Computing and Information Systems<br>The University of Melbourne<br>Melbourne, VIC 3010, Australia</span></div>
+      <div class="contact-row"><i class="ti ti-brand-google-scholar"></i><a href="https://scholar.google.com.sg/citations?user=AUJWzE8AAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none">Google Scholar Profile</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-label">Prospective students</div>
+      <p class="prospect-text">I welcome applications from motivated PhD students interested in software engineering, automated program repair, formal verification, and AI for code. If you are interested in joining the SEAPL lab, please reach out with your CV and a brief research statement.</p>
+      <button class="pill"><i class="ti ti-external-link"></i> Inquire about PhD positions</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Bach Le · University of Melbourne · SEAPL Lab</p>
+  <p>Last updated May 2026</p>
+</footer>
+
+<script>
+  function loadHeadshot(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const container = document.getElementById('headshot-container');
+      container.innerHTML = '<img src="' + e.target.result + '" class="headshot" id="headshot-img" alt="Headshot" /><button onclick="removeHeadshot()" style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;border:none;background:var(--muted);color:var(--bg);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1" title="Remove photo">✕</button>';
+      container.style.position = 'relative';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeHeadshot() {
+    const container = document.getElementById('headshot-container');
+    container.style.position = '';
+    container.innerHTML = '<div class="headshot-placeholder" id="headshot-placeholder" title="Click to upload your photo"><input type="file" accept="image/*" onchange="loadHeadshot(event)" /><i class="ti ti-user-circle"></i><span>Click to upload headshot</span></div>';
+  }
+
+  function toggleTheme() {
+    const body = document.getElementById('thebody');
+    const label = document.getElementById('toggle-label');
+    const isDark = body.classList.toggle('dark');
+    label.textContent = isDark ? 'Dark' : 'Light';
+  }
+
+  function toggleMenu() {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+  }
+
+  function smoothTo(id) {
+    document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+    // close mobile menu if open
+    document.getElementById('burger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // Publication year filter
+  const filters = document.querySelectorAll('.pub-filter');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.pub-card').forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.year === f) ? 'grid' : 'none';
+      });
+    });
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    if (!burger.contains(e.target) && !menu.contains(e.target)) {
+      burger.classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
