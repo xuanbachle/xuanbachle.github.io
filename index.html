@@ -136,6 +136,19 @@
   .team-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
   .team-role { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
   .team-topic { font-size: 12px; color: var(--accent); font-family: var(--mono); text-align: center; line-height: 1.4; }
+  .alumni-placement {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 8px; font-size: 12px; font-weight: 500;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(15,138,110,0.1); color: var(--accent2);
+    border: 1px solid rgba(15,138,110,0.2); font-family: var(--sans);
+    line-height: 1.3;
+  }
+  .dark .alumni-placement {
+    background: rgba(125,212,192,0.1); border-color: rgba(125,212,192,0.2);
+  }
+  .alumni-topic { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 4px; }
+
   .team-section-label { grid-column: 1/-1; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 0 0; }
 
   /* CONTACT */
@@ -225,6 +238,8 @@
     .team-name { font-size: 13px; }
     .team-role { font-size: 11px; }
     .team-topic { font-size: 10px; }
+    .alumni-topic { font-size: 10px; }
+    .alumni-placement { font-size: 11px; }
 
     .contact-grid { grid-template-columns: 1fr; }
     .contact-card { padding: 20px; }
@@ -573,6 +588,16 @@
         <div class="pub-title">Unlocking LLM Repair Capabilities Through Cross-Language Translation and Multi-Agent Refinement</div>
         <div class="pub-authors">Wenqiang Luo, Jacky Wai Keung, Boyang Yang, Jacques Klein, Tegawende F. Bissyande, <u>Haoye Tian</u>, and <strong>Bach Le</strong></div>
         <div class="pub-venue">48th IEEE/ACM International Conference on Software Engineering (ICSE), 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">DoorDet: Semi-Automated Multi-Class Door Detection Dataset via Object Detection and Large Language Models</div>
+        <div class="pub-authors"><u>Licheng Zhang</u>, <strong>Bach Le</strong>, Naveed Akhtar, Tuan Ngo</div>
+        <div class="pub-venue">Neural Computing and Applications, Journal, 2026</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
     </div>
@@ -1094,23 +1119,26 @@
 
     <div class="team-section-label">Alumni</div>
 
-    <div class="team-card" style="opacity:0.65">
+    <div class="team-card" style="opacity:0.8">
       <div class="avatar av-blue">CL</div>
       <div class="team-name">Cong-Thanh Le</div>
       <div class="team-role">PhD 2023–2026</div>
-      <div class="team-topic">Trustworthy APR → Asst. Professor, SUTD, Singapore</div>
+      <div class="alumni-topic">Trustworthy Automated Program Repair</div>
+      <div class="alumni-placement">🎓 Asst. Professor, SUTD, Singapore</div>
     </div>
-    <div class="team-card" style="opacity:0.65">
+    <div class="team-card" style="opacity:0.8">
       <div class="avatar av-amber">DN2</div>
       <div class="team-name">Dat Nguyen</div>
       <div class="team-role">PhD 2022–2025</div>
-      <div class="team-topic">Neuro-symbolic reasoning &amp; neural network analysis → Postdoc, Harvard University</div>
+      <div class="alumni-topic">Neuro-symbolic reasoning &amp; neural network analysis</div>
+      <div class="alumni-placement">🎓 Postdoc, Harvard University</div>
     </div>
-    <div class="team-card" style="opacity:0.65">
+    <div class="team-card" style="opacity:0.8">
       <div class="avatar av-coral">HT</div>
       <div class="team-name">Haoye Tian</div>
       <div class="team-role">Postdoc 2024–2025</div>
-      <div class="team-topic">Automated Program Repair → Asst. Professor, Aalto University, Finland</div>
+      <div class="alumni-topic">Automated Program Repair</div>
+      <div class="alumni-placement">🎓 Asst. Professor, Aalto University, Finland</div>
     </div>
 
   </div>
