@@ -114,6 +114,16 @@
   .pub-link { font-family: var(--mono); font-size: 12px; padding: 3px 10px; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
   .pub-link:hover { border-color: var(--accent); color: var(--accent); }
   .pub-cite { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: auto; }
+  .repo-link { color: var(--accent) !important; border-color: var(--accent) !important; }
+  .pub-stars {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--mono); font-size: 12px;
+    padding: 3px 10px; border: 1px solid rgba(239,180,39,0.35);
+    border-radius: 4px; color: #a07800; background: rgba(180,120,0,0.07);
+    white-space: nowrap;
+  }
+  .dark .pub-stars { color: #f0b429; background: rgba(239,180,39,0.1); border-color: rgba(239,180,39,0.3); }
+
   .pub-badge { font-size: 12px; padding: 2px 8px; border-radius: 4px; }
   .pb-award { background: rgba(180,120,0,0.1); color: #a07800; }
   .dark .pb-award { background: rgba(239,180,39,0.12); color: #f0b429; }
@@ -538,7 +548,13 @@
         <div class="pub-title">CodeWiki: Evaluating AI's Ability to Generate Holistic Documentation for Large-Scale Codebases</div>
         <div class="pub-authors"><u>Hoang-Anh Nguyen</u>, <u>Minh Le-Anh</u>, <strong>Bach Le</strong>, and Nghi Bui</div>
         <div class="pub-venue">64th Annual Meeting of the Association for Computational Linguistics (ACL), Findings Track, 2026</div>
-        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+        <div class="pub-meta">
+          <a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a>
+          <a class="pub-link repo-link" href="https://github.com/FSoft-AI4Code/CodeWiki" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i> CodeWiki</a>
+          <span class="pub-stars" id="codewiki-stars" title="GitHub stars">
+            <i class="ti ti-star" style="font-size:12px"></i> <span id="codewiki-star-count">…</span>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -1203,6 +1219,38 @@
       });
     });
   });
+
+  // Fetch CodeWiki GitHub stars
+  async function fetchCodeWikiStars() {
+    try {
+      const res = await fetch('https://api.github.com/repos/FSoft-AI4Code/CodeWiki');
+      if (!res.ok) throw new Error('GitHub API error');
+      const data = await res.json();
+      const stars = data.stargazers_count;
+      const display = stars >= 1000 ? (stars / 1000).toFixed(1) + 'k' : String(stars);
+      const el = document.getElementById('codewiki-star-count');
+      if (el) el.textContent = display;
+      localStorage.setItem('codewiki_stars', display);
+      localStorage.setItem('codewiki_stars_ts', String(Date.now()));
+    } catch(e) {
+      const el = document.getElementById('codewiki-star-count');
+      if (el) el.textContent = '★';
+    }
+  }
+  // Cache star count in localStorage for 24 hours
+  (function() {
+    const CACHE_KEY = 'codewiki_stars';
+    const CACHE_TS  = 'codewiki_stars_ts';
+    const ONE_DAY   = 24 * 60 * 60 * 1000;
+    const cached    = localStorage.getItem(CACHE_KEY);
+    const cachedTs  = parseInt(localStorage.getItem(CACHE_TS) || '0', 10);
+    if (cached && (Date.now() - cachedTs < ONE_DAY)) {
+      const el = document.getElementById('codewiki-star-count');
+      if (el) el.textContent = cached;
+    } else {
+      fetchCodeWikiStars();
+    }
+  })();
 
   // Close mobile menu on outside click
   document.addEventListener('click', function(e) {
