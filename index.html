@@ -291,6 +291,39 @@
     .tl-item { grid-template-columns: 1fr; gap: 4px; }
     .tl-period { font-size: 10px; }
   }
+
+  /* ── LEADERSHIP & AWARDS ── */
+  .lead-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 12px; overflow: hidden; }
+  .lead-item { display: grid; grid-template-columns: 140px 1fr auto; gap: 0 20px; align-items: start; padding: 18px 24px; background: var(--bg2); transition: background 0.15s; }
+  .lead-item:hover { background: var(--bg3); }
+  .lead-period { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 2px; line-height: 1.5; }
+  .lead-body { }
+  .lead-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .lead-venue { font-size: 13px; color: var(--muted); }
+  .lead-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; white-space: nowrap; align-self: start; }
+  .lb-chair { background: rgba(26,110,245,0.08); color: var(--accent); border: 1px solid rgba(26,110,245,0.18); }
+  .lb-editor { background: rgba(15,138,110,0.08); color: var(--accent2); border: 1px solid rgba(15,138,110,0.18); }
+  .lb-director { background: rgba(180,120,0,0.1); color: #a07800; border: 1px solid rgba(180,120,0,0.2); }
+  .dark .lb-director { color: #f0b429; border-color: rgba(239,180,39,0.25); }
+  .lb-panel { background: rgba(130,80,200,0.08); color: #7040c0; border: 1px solid rgba(130,80,200,0.18); }
+  .dark .lb-panel { background: rgba(180,130,255,0.1); color: #b482ff; border-color: rgba(180,130,255,0.2); }
+
+  .award-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .award-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: var(--shadow); transition: background 0.3s, border-color 0.2s; }
+  .award-card:hover { border-color: var(--border2); }
+  .award-icon { font-size: 24px; margin-bottom: 12px; }
+  .award-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 6px; line-height: 1.4; }
+  .award-org { font-size: 13px; color: var(--accent); margin-bottom: 4px; }
+  .award-year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .award-amount { font-family: var(--mono); font-size: 12px; color: var(--accent2); margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .lead-item { grid-template-columns: 1fr auto; gap: 6px 12px; }
+    .lead-period { grid-column: 1; grid-row: 1; font-size: 11px; }
+    .lead-body { grid-column: 1; grid-row: 2; }
+    .lead-badge { grid-column: 2; grid-row: 1; }
+    .award-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body id="thebody">
@@ -299,7 +332,11 @@
   <span class="nav-brand">Bach Le</span>
   <div class="nav-right">
     <div class="nav-links">
-      <a onclick="smoothTo('education')">Education</a>
+      <a onclick="smoothTo('leadership')">Leadership</a>
+      <a onclick="smoothTo('awards')">Awards</a>
+      <a onclick="smoothTo('leadership')">Leadership</a>
+  <a onclick="smoothTo('awards')">Awards</a>
+  <a onclick="smoothTo('education')">Education</a>
       <a onclick="smoothTo('books')">Books</a>
       <a onclick="smoothTo('pubs')">Publications</a>
       <a onclick="smoothTo('team')">Team</a>
@@ -315,6 +352,8 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
+  <a onclick="smoothTo('leadership')">Leadership</a>
+  <a onclick="smoothTo('awards')">Awards</a>
   <a onclick="smoothTo('education')">Education</a>
   <a onclick="smoothTo('books')">Books</a>
   <a onclick="smoothTo('pubs')">Publications</a>
@@ -364,6 +403,120 @@
 </div>
 
 <!-- BOOKS -->
+<section id="leadership">
+  <div class="section-header">
+    <h2 class="section-title">Leadership &amp; Service</h2>
+  </div>
+  <div class="lead-grid">
+
+    <div class="lead-item">
+      <div class="lead-period">2025–now</div>
+      <div class="lead-body">
+        <div class="lead-role">Director, Master of Software Engineering Program</div>
+        <div class="lead-venue">The University of Melbourne, Australia</div>
+      </div>
+      <span class="lead-badge lb-director">Director</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2026–now</div>
+      <div class="lead-body">
+        <div class="lead-role">Associate Editor</div>
+        <div class="lead-venue">Automated Software Engineering Journal</div>
+      </div>
+      <span class="lead-badge lb-editor">Editor</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2026–now</div>
+      <div class="lead-body">
+        <div class="lead-role">Editorial Board Member</div>
+        <div class="lead-venue">Software Engineering Nexus (SEN)</div>
+      </div>
+      <span class="lead-badge lb-editor">Editor</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2025–now</div>
+      <div class="lead-body">
+        <div class="lead-role">Principal Investigator (Industry)</div>
+        <div class="lead-venue">FPT Software AI Center — one of the world's top 50 industrial AI labs (Vietnam)</div>
+      </div>
+      <span class="lead-badge lb-director">PI</span>
+    </div>
+
+  
+
+    <div class="lead-item">
+      <div class="lead-period">2026</div>
+      <div class="lead-body">
+        <div class="lead-role">Co-Chair, Education Track</div>
+        <div class="lead-venue">IEEE International Conference on Software Testing, Verification and Validation (ICST)</div>
+      </div>
+      <span class="lead-badge lb-chair">Co-Chair</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2024</div>
+      <div class="lead-body">
+        <div class="lead-role">Expert Panel Member</div>
+        <div class="lead-venue">Automated Program Repair (APR) International Workshop — one of five invited experts</div>
+      </div>
+      <span class="lead-badge lb-panel">Panel</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2022</div>
+      <div class="lead-body">
+        <div class="lead-role">Co-Chair, Demo Track</div>
+        <div class="lead-venue">International Conference on Blockchain and Cryptocurrency (ICBC)</div>
+      </div>
+      <span class="lead-badge lb-chair">Co-Chair</span>
+    </div>
+
+    <div class="lead-item">
+      <div class="lead-period">2021</div>
+      <div class="lead-body">
+        <div class="lead-role">Co-Chair, Student Competition Track</div>
+        <div class="lead-venue">IEEE/ACM International Conference on Automated Software Engineering (ASE)</div>
+      </div>
+      <span class="lead-badge lb-chair">Co-Chair</span>
+    </div>
+
+  </div>
+</section>
+
+<section id="awards">
+  <div class="section-header">
+    <h2 class="section-title">Awards &amp; Grants</h2>
+  </div>
+  <div class="award-grid">
+
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">IEEE TCSE Distinguished Paper Award</div>
+      <div class="award-org">International Conference on Software Maintenance and Evolution (ICSME)</div>
+      <div class="award-year">2026</div>
+    </div>
+
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">IEEE TCSE Distinguished Paper Award</div>
+      <div class="award-org">International Conference on Software Maintenance and Evolution (ICSME)</div>
+      <div class="award-year">2023</div>
+    </div>
+
+    <div class="award-card">
+      <div class="award-icon">🎖️</div>
+      <div class="award-title">ARC Discovery Early Career Researcher Award (DECRA)</div>
+      <div class="award-org">Australian Research Council</div>
+      <div class="award-year">Jan 2022 – Dec 2024</div>
+      <div class="award-amount">~ AUD $500K · Practical Automated Software Bug Fixing via Syntactic and Semantic Analyses</div>
+    </div>
+
+  </div>
+</section>
+
 <section id="education">
   <div class="section-header">
     <h2 class="section-title">Education &amp; Appointments</h2>
@@ -535,8 +688,48 @@
     <div class="pub-card visible" data-year="2026">
       <div class="pub-year-col">2026</div>
       <div>
+        <div class="pub-title">Perish or Flourish? A Holistic Evaluation of Large Language Models for Code Generation in Functional Programming</div>
+        <div class="pub-authors">Lang Hong Nguyet Anh, <u>Eric Lang</u>, <strong>Bach Le</strong>, Huynh Quyet Thang, Thanh Le-Cong</div>
+        <div class="pub-venue">Conference on Empirical Methods in Natural Language Processing (EMNLP), Findings Track, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Beyond Repository Boundaries: Cross-Repository Graph Retrieval for Code Generation</div>
+        <div class="pub-authors"><u>Minh Le-Anh</u>, Nam Le Hai, Quyen Tran, Anh Nguyen Hoang, Linh Ngo Van, <strong>Bach Le</strong>, Nghi D. Q. Bui</div>
+        <div class="pub-venue">Conference on Empirical Methods in Natural Language Processing (EMNLP), Findings Track, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">Athena: Vulnerability-Affected Library Identification via Knowledge Graph Completion</div>
+        <div class="pub-authors">Phong Trinh Duy, <u>Trang Dang Yen</u>, Huu Hung Nguyen, Huynh Quyet Thang, <strong>Bach Le</strong>, Dieu Hoang Vu, David Lo, Thanh Le-Cong</div>
+        <div class="pub-venue">Conference on Empirical Methods in Natural Language Processing (EMNLP), Main Track, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
+        <div class="pub-title">A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications</div>
+        <div class="pub-authors">Boyang Yang, Zijian Cai, Fengling Liu, <strong>Bach Le</strong>, Lingming Zhang, Tegawendé F. Bissyandé, Yang Liu, Haoye Tian</div>
+        <div class="pub-venue">ACM Transactions on Software Engineering and Methodology (TOSEM), Journal, 2026</div>
+        <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
+      </div>
+    </div>
+
+    <div class="pub-card visible" data-year="2026">
+      <div class="pub-year-col">2026</div>
+      <div>
         <div class="pub-title">Optimizing Spectral Signature in Code Backdoor Detection</div>
-        <div class="pub-authors">Quoc Hung Le, <u>Thanh Le-Cong</u>, <strong>Bach Le</strong>, Bowen Xu</div>
+        <div class="pub-authors">Quoc Hung Le, Thanh Le-Cong, <strong>Bach Le</strong>, Bowen Xu</div>
         <div class="pub-venue">International Conference on Software Maintenance and Evolution (ICSME), 2026</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a><span class="pub-badge pb-award">🏆 Distinguished Paper</span></div>
       </div>
@@ -618,7 +811,6 @@
       </div>
     </div>
 
-    <!-- 2025 -->
     <div class="pub-card visible" data-year="2026">
       <div class="pub-year-col">2026</div>
       <div>
@@ -629,6 +821,7 @@
       </div>
     </div>
 
+    <!-- 2025 -->
     <div class="pub-card visible" data-year="2025">
       <div class="pub-year-col">2025</div>
       <div>
@@ -744,7 +937,7 @@
       <div class="pub-year-col">2024</div>
       <div>
         <div class="pub-title">Leveraging Large Language Model for Automatic Patch Correctness Assessment</div>
-        <div class="pub-authors">Xin Zhou, Bowen Xu, Kisub Kim, DongGyun Han, Hung Nguyen, Thanh Le-Cong, Junda He, <strong>Bach Le</strong>, and David Lo</div>
+        <div class="pub-authors">Xin Zhou, Bowen Xu, Kisub Kim, DongGyun Han, Hung Nguyen, <u>Thanh Le-Cong</u>, Junda He, <strong>Bach Le</strong>, and David Lo</div>
         <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2024</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -755,7 +948,7 @@
       <div class="pub-year-col">2023</div>
       <div>
         <div class="pub-title">Are We Ready to Embrace Generative AI for Software Q&amp;A?</div>
-        <div class="pub-authors">Bowen Xu, <u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, Thong Hoang, Jiakun Liu, Kisub Kim, Chen Gong, Changan Niu, Chenyu Wang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-authors">Bowen Xu, <u>Thanh-Dat Nguyen</u>, <u>Thanh Le-Cong</u>, Thong Hoang, Jiakun Liu, Kisub Kim, Chen Gong, Changan Niu, Chenyu Wang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
         <div class="pub-venue">38th IEEE/ACM International Conference on Automated Software Engineering (ASE), New Ideas Track, 2023</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -765,7 +958,7 @@
       <div class="pub-year-col">2023</div>
       <div>
         <div class="pub-title">Multi-Granularity Detector for Vulnerability Fixes</div>
-        <div class="pub-authors">Truong Giang Nguyen, Thanh Le-Cong, Hong Jin Kang, Ratnadira Widyasari, Chengran Yang, Zhipeng Zhao, Bowen Xu, Jiayuan Zhou, Xin Xia, Ahmed Hassan, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-authors">Truong Giang Nguyen, <u>Thanh Le-Cong</u>, Hong Jin Kang, Ratnadira Widyasari, Chengran Yang, Zhipeng Zhao, Bowen Xu, Jiayuan Zhou, Xin Xia, Ahmed Hassan, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
         <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2023</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -775,7 +968,7 @@
       <div class="pub-year-col">2023</div>
       <div>
         <div class="pub-title">Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning</div>
-        <div class="pub-authors">Thanh Le-Cong, Duc-Minh Luong, <strong>Xuan-Bach D. Le</strong>, David Lo, Nhat-Hoa Tran, Quang-Huy Bui, Quyet-Thang Huynh</div>
+        <div class="pub-authors"><u>Thanh Le-Cong</u>, Duc-Minh Luong, <strong>Xuan-Bach D. Le</strong>, David Lo, Nhat-Hoa Tran, Quang-Huy Bui, Quyet-Thang Huynh</div>
         <div class="pub-venue">IEEE Transactions on Software Engineering (TSE), Journal, 2023</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -807,7 +1000,7 @@
       <div class="pub-year-col">2023</div>
       <div>
         <div class="pub-title">Chronos: Time-Aware Zero-Shot Identification of Libraries from Vulnerability Reports</div>
-        <div class="pub-authors">Y. Lyu, Thanh Le-Cong, Hong Jin Kang, R. Widyasari, Z. Zhao, <strong>Xuan-Bach D. Le</strong>, Ming Li, David Lo</div>
+        <div class="pub-authors">Y. Lyu, <u>Thanh Le-Cong</u>, Hong Jin Kang, R. Widyasari, Z. Zhao, <strong>Xuan-Bach D. Le</strong>, Ming Li, David Lo</div>
         <div class="pub-venue">45th IEEE/ACM International Conference on Software Engineering (ICSE), Research Track, 2023</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -818,7 +1011,7 @@
       <div class="pub-year-col">2022</div>
       <div>
         <div class="pub-title">AutoPruner: Transformer-based Call Graph Pruning</div>
-        <div class="pub-authors">Thanh Le-Cong, Hong Jin Kang, Truong Giang Nguyen, S. Haryono, David Lo, <strong>Xuan-Bach D. Le</strong>, and Quyet-Thang Huynh</div>
+        <div class="pub-authors"><u>Thanh Le-Cong</u>, Hong Jin Kang, Truong Giang Nguyen, S. Haryono, David Lo, <strong>Xuan-Bach D. Le</strong>, and Quyet-Thang Huynh</div>
         <div class="pub-venue">21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), Research Track, 2022</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -828,7 +1021,7 @@
       <div class="pub-year-col">2022</div>
       <div>
         <div class="pub-title">VulCurator: A Vulnerability-Fixing Commit Detector</div>
-        <div class="pub-authors">Truong Giang Nguyen, Thanh Le-Cong, Hong Jin Kang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
+        <div class="pub-authors">Truong Giang Nguyen, <u>Thanh Le-Cong</u>, Hong Jin Kang, <strong>Xuan-Bach D. Le</strong>, David Lo</div>
         <div class="pub-venue">21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), Demo Track, 2022</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -838,7 +1031,7 @@
       <div class="pub-year-col">2022</div>
       <div>
         <div class="pub-title">FFL: Fine grained Fault Localization for Student Programs via Syntactic and Semantic Reasoning</div>
-        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, Duc-Minh Luong, Van-Hai Duong, <strong>Xuan-Bach D. Le</strong>, David Lo and Quyet-Thang Huynh</div>
+        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, <u>Thanh Le-Cong</u>, Duc-Minh Luong, Van-Hai Duong, <strong>Xuan-Bach D. Le</strong>, David Lo and Quyet-Thang Huynh</div>
         <div class="pub-venue">38th IEEE International Conference on Software Maintenance and Evolution (ICSME), Research Track, 2022</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -858,7 +1051,7 @@
       <div class="pub-year-col">2022</div>
       <div>
         <div class="pub-title">Toward the Analysis of Graph Neural Networks</div>
-        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, Thanh Le-Cong, ThanhVu H Nguyen, <strong>Xuan-Bach D. Le</strong>, Quyet-Thang Huynh</div>
+        <div class="pub-authors"><u>Thanh-Dat Nguyen</u>, <u>Thanh Le-Cong</u>, ThanhVu H Nguyen, <strong>Xuan-Bach D. Le</strong>, Quyet-Thang Huynh</div>
         <div class="pub-venue">44th IEEE/ACM International Conference on Software Engineering (ICSE), NIER Track, 2022</div>
         <div class="pub-meta"><a class="pub-link">PDF</a><a class="pub-link">Slides</a><a class="pub-link">BibTeX</a></div>
       </div>
@@ -1081,12 +1274,7 @@
       <div class="team-role">PhD Student · 2024–now</div>
       <div class="team-topic">Automated Program Repair</div>
     </div>
-    <div class="team-card">
-      <div class="avatar av-amber">LZ</div>
-      <div class="team-name">Licheng Zhang</div>
-      <div class="team-role">PhD Student · 2025–now</div>
-      <div class="team-topic">Computer Vision for SE & Design</div>
-    </div>
+
     <div class="team-card">
       <div class="avatar av-coral">HH</div>
       <div class="team-name">Hieu Huynh</div>
@@ -1104,6 +1292,12 @@
       <div class="team-name">Jing Gong</div>
       <div class="team-role">PhD Student · 2026–now</div>
       <div class="team-topic">Neural Symbolic AI</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av-blue">JQ</div>
+      <div class="team-name">Jingcheng Qian</div>
+      <div class="team-role">PhD Student · 2026–now</div>
+      <div class="team-topic">Software Architecture Design</div>
     </div>
 
     <div class="team-section-label">Research Assistants &amp; AI Residents</div>
@@ -1155,6 +1349,27 @@
       <div class="team-role">Postdoc 2024–2025</div>
       <div class="alumni-topic">Automated Program Repair</div>
       <div class="alumni-placement">🎓 Asst. Professor, Aalto University, Finland</div>
+    </div>
+
+    <div class="team-card" style="opacity:0.8">
+      <div class="avatar av-amber">LZ</div>
+      <div class="team-name">Licheng Zhang</div>
+      <div class="team-role">PhD 2025–2026</div>
+      <div class="alumni-topic">Computer Vision for SE &amp; Design</div>
+    </div>
+    <div class="team-card" style="opacity:0.8">
+      <div class="avatar av-teal">TY</div>
+      <div class="team-name">Trang Dang Yen</div>
+      <div class="team-role">Undergrad 2023–2024</div>
+      <div class="alumni-topic">Software Security</div>
+      <div class="alumni-placement">🎓 PhD Student, University of Sydney</div>
+    </div>
+    <div class="team-card" style="opacity:0.8">
+      <div class="avatar av-purple">EL</div>
+      <div class="team-name">Eric Lang</div>
+      <div class="team-role">Undergrad 2023–2024</div>
+      <div class="alumni-topic">Code Generation for Functional Programming</div>
+      <div class="alumni-placement">💼 Software Engineer, Heidi</div>
     </div>
 
   </div>
