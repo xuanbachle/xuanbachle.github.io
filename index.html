@@ -340,6 +340,7 @@
   <span class="nav-brand">Bach Le</span>
   <div class="nav-right">
     <div class="nav-links">
+      <a onclick="smoothTo('news')">News</a>
       <a onclick="smoothTo('leadership')">Leadership</a>
       <a onclick="smoothTo('awards')">Awards</a>
   <a onclick="smoothTo('education')">Education</a>
@@ -358,7 +359,8 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a onclick="smoothTo('leadership')">Leadership</a>
+  <a onclick="smoothTo('news')">News</a>
+      <a onclick="smoothTo('leadership')">Leadership</a>
   <a onclick="smoothTo('awards')">Awards</a>
   <a onclick="smoothTo('education')">Education</a>
   <a onclick="smoothTo('books')">Books</a>
@@ -409,6 +411,23 @@
 </div>
 
 <!-- BOOKS -->
+<section id="news">
+  <div class="section-header">
+    <h2 class="section-title">News</h2>
+  </div>
+  <div class="news-grid">
+
+    <div class="news-item">
+      <span class="news-date">Oct 2026</span>
+      <span class="news-text">
+        Awarded <strong>ARC Research Hub for Next Generation Building Construction</strong> as Chief Investigator — a $20M multi-institutional collaborative project ($5M ARC + $5M industry cash + $10M in-kind). Co-leading two themes: Agentic-AI in the design &amp; compliance checking process, and Advanced datasets for robotics in the workplace.
+      </span>
+      <span class="news-badge" style="background:rgba(26,110,245,0.1);color:var(--accent);border:1px solid rgba(26,110,245,0.2)">Grant</span>
+    </div>
+
+  </div>
+</section>
+
 <section id="leadership">
   <div class="section-header">
     <h2 class="section-title">Leadership &amp; Service</h2>
@@ -497,6 +516,17 @@
     <h2 class="section-title">Awards &amp; Grants</h2>
   </div>
   <div class="award-grid">
+
+    <div class="award-card" style="border-left: 3px solid var(--accent); grid-column: 1 / -1;">
+      <div class="award-icon">🏗️</div>
+      <div class="award-title">ARC Research Hub for Next Generation Building Construction</div>
+      <div class="award-org">Australian Research Council · Chief Investigator (Multi-Institutional Collaborative Project)</div>
+      <div class="award-year">2026 – ongoing</div>
+      <div class="award-amount" style="margin-top:10px; line-height:1.6">
+        <strong style="color:var(--text)">Total Value: AUD $20M</strong> — $5M ARC cash · $5M industry cash · $10M in-kind from universities &amp; partner organisations<br>
+        <span style="color:var(--muted); font-size:12px; font-family:var(--sans)">Co-leading two research themes: (1) Agentic-AI in design &amp; compliance checking; (2) Advanced datasets for robotics in the workplace</span>
+      </div>
+    </div>
 
     <div class="award-card">
       <div class="award-icon">🏆</div>
